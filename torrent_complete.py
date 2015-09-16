@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 import os
 import re
+import argparse
 
-def main():
-    tr_dir = os.environ['TR_TORRENT_DIR']
-    tr_name = os.environ['TR_TORRENT_NAME']
+def main(tr_dir, tr_name):
+    # transmission way
+    #tr_dir = os.environ['TR_TORRENT_DIR']
+    #tr_name = os.environ['TR_TORRENT_NAME']
     pattern = re.compile("""
         (\[.+\])?       # release group name 
         \s*
@@ -26,4 +28,8 @@ def main():
         os.rename(old_path, new_path)
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("tr_dir", help="Torrent path")
+    parser.add_argument("tr_name", help="Torrent name")
+    args = parser.parse_args()
+    main(args.tr_dir, args.tr_name)
