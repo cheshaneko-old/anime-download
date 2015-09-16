@@ -4,6 +4,8 @@ import re
 import argparse
 
 def main(tr_dir, tr_name):
+    # qbittorrent give path with torrent 
+    tr_dir = os.path.dirname(tr_dir)
     # transmission way
     #tr_dir = os.environ['TR_TORRENT_DIR']
     #tr_name = os.environ['TR_TORRENT_NAME']
